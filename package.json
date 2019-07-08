@@ -1,0 +1,15 @@
+{
+  "name": "jest-sonar",
+  "version": "1.0.0",
+  "description": "A sonar reporter for jest",
+  "main": "index.js",
+  "repository": "git@github.com:sh33dafi/jest-sonar.git",
+  "author": "Yannick Houbrix <yannick.houbrix@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "standard-version": "^6.0.1"
+  },
+  "scripts": {
+    "release": "standard-version"
+  }
+}
