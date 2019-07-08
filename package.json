@@ -11,5 +11,8 @@
   },
   "scripts": {
     "release": "standard-version"
+  },
+  "dependencies": {
+    "mustache": "^3.0.1"
   }
 }

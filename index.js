@@ -1,4 +1,4 @@
 'use strict';
 
-const reporter = require('./src/');
+const reporter = require('./src/jest-sonar');
 module.exports = reporter;
