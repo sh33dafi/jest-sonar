@@ -23,7 +23,7 @@ class JestSonar {
     onRunComplete() {
         const fileName = this.getFileName();
         fs.mkdirSync(path.dirname(fileName), { recursive: true });
-        fs.writeFileSync(fileName, this.report);
+        fs.writeFileSync(fileName, this.report, 'utf8');
 
     }
 

@@ -1,4 +1,4 @@
-const Mustache = require('Mustache');
+const Sqrl = require('Squirrelly');
 const template = require('./template');
 const path = require('path');
 
@@ -21,7 +21,7 @@ class Reporter {
             }))
         };
 
-        return Mustache.render(template, testResults).trim();
+        return Sqrl.Render(template, testResults).trim();
     }
 }
 

@@ -1244,6 +1244,11 @@ split@^1.0.0:
   dependencies:
     through "2"
 
+squirrelly@^7.1.3:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/squirrelly/-/squirrelly-7.1.3.tgz#b0e3e5a19f768b2aba8bcd4a9162aa0ec06cf309"
+  integrity sha512-WW0+ncxuorxuaDHZ/McwWcfG/+Y/NZwBSKTbkRTJ63JwL5rkmWVnvDJHIM6Z86m3kP5lgvgpInXMni5umlc7ww==
+
 standard-version@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-6.0.1.tgz#ad50e9770b73090d2f8f692e520d906813a3cefe"
