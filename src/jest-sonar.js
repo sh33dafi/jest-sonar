@@ -10,7 +10,6 @@ const DEFAULT_OPTIONS = {
 class JestSonar {
 
     constructor(globalConfig, options) {
-        console.log(options);
         this.config = this.getConfig(globalConfig);
         this.options = this.getOptions(options);
     }

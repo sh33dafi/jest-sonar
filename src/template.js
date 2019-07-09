@@ -3,7 +3,7 @@ module.exports = `
     {{#testResults}}
     <file path="{{{path}}}">
         {{#testCases}}
-        <testCase name="{{name}}" duration="{{duration}}"/>
+        <testCase name="{{name}}" duration="{{duration}}">{{#failures}}<failure message="Error"><![CDATA[{{{.}}}]]></failure>{{/failures}}</testCase>
         {{/testCases}}
     </file>
     {{/testResults}}
