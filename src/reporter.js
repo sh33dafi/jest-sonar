@@ -1,14 +1,15 @@
 const Mustache = require('Mustache');
 const template = require('./template');
+const path = require('path');
 
 class Reporter {
-    constructor(){
-
+    constructor(rootDir){
+        this.rootDir = rootDir;
     }
 
     toSonarReport(results) {
         const testResults = {testResults:results.testResults.map(testResult => ({
-            path : testResult.testFilePath,
+            path : path.relative(this.rootDir, testResult.testFilePath),
             testCases: testResult.testResults.map(testCase => ({
                 name: testCase.fullName,
                 duration: testCase.duration

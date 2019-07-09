@@ -4,30 +4,40 @@ const path = require('path');
 
 const DEFAULT_OPTIONS = {
     outputDirectory: null,
-    outputName: 'sonar-report'
+    outputName: 'sonar-report.xml'
 };
 
 class JestSonar {
 
     constructor(globalConfig, options) {
+        console.log(options);
+        this.config = this.getConfig(globalConfig);
         this.options = this.getOptions(options);
     }
 
-    getOptions(options) {
-        return Object.assign({}, DEFAULT_OPTIONS, options);
+    onTestResult(contexts, f, results) {
+        const rootDir = contexts.context.config.cwd || this.config.rootDir || '';
+        const reporter = new Reporter(rootDir);
+        this.report = reporter.toSonarReport(results);
     }
 
-    onRunComplete(contexts, results) {
-        const reporter = new Reporter();
-        const report = reporter.toSonarReport(results);
+    onRunComplete() {
         const fileName = this.getFileName();
         fs.mkdirSync(path.dirname(fileName), { recursive: true });
-        fs.writeFileSync(fileName, report);
+        fs.writeFileSync(fileName, this.report);
 
     }
 
     getFileName() {
         return path.resolve(this.options.outputDirectory,this.options.outputName);
+    }
+
+    getConfig(config) {
+        return Object.assign({}, config);
+    }
+
+    getOptions(options) {
+        return Object.assign({}, DEFAULT_OPTIONS, options);
     }
 }
 
