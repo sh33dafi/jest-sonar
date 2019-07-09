@@ -7,10 +7,12 @@
   "author": "Yannick Houbrix <yannick.houbrix@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^24.8.0",
     "standard-version": "^6.0.1"
   },
   "scripts": {
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "jest"
   },
   "dependencies": {
     "squirrelly": "^7.1.3"
