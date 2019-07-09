@@ -13,7 +13,6 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "mustache": "^3.0.1",
     "squirrelly": "^7.1.3"
   }
 }
