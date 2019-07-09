@@ -1,6 +1,6 @@
 {
   "name": "jest-sonar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A sonar reporter for jest",
   "main": "index.js",
   "repository": "git@github.com:sh33dafi/jest-sonar.git",
