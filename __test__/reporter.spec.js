@@ -1,4 +1,4 @@
-const Reporter = require('./reporter');
+const Reporter = require('../src/reporter');
 
 describe('reporter', () => {
 
