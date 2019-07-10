@@ -3,6 +3,10 @@
 jest-sonar is a custom test reporter for [Jest](https://jestjs.io/).
 It converts the generated report into Sonar's [Generic Execution format](https://docs.sonarqube.org/latest/analysis/generic-test/#header-2) 
 
+[![Build Status](https://travis-ci.org/sh33dafi/jest-sonar.svg?branch=master)](https://travis-ci.org/sh33dafi/jest-sonar)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5d705f505c5aeca0a732/maintainability)](https://codeclimate.com/github/sh33dafi/jest-sonar/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5d705f505c5aeca0a732/test_coverage)](https://codeclimate.com/github/sh33dafi/jest-sonar/test_coverage)
+
 ## Installation
 
 Using yarn:
@@ -24,6 +28,7 @@ module.exports = {
     reporters: ['default',  'jest-sonar'],
     ...
 };
+
 ```
 
 ### Customize the reporter
@@ -46,6 +51,7 @@ The following options can be set to customize the reporter:
      }]],
      ...
  };
+
  ```
 
 ## Contribution

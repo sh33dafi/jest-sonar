@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "release": "standard-version",
-    "test": "jest",
+    "test": "jest --collect-coverage",
     "lint": "eslint ."
   },
   "devDependencies": {
