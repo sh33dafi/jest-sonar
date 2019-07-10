@@ -6,13 +6,18 @@
   "repository": "git@github.com:sh33dafi/jest-sonar.git",
   "author": "Yannick Houbrix <yannick.houbrix@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "jest": "^24.8.0",
-    "standard-version": "^6.0.1"
-  },
   "scripts": {
     "release": "standard-version",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "standard-version": "^6.0.1"
   },
   "dependencies": {}
 }

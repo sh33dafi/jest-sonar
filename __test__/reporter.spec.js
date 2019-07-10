@@ -1,7 +1,6 @@
 const Reporter = require('../src/reporter');
 
 describe('reporter', () => {
-
     let reporter;
 
     beforeEach(() => {
@@ -21,7 +20,8 @@ describe('reporter', () => {
                                 failureMessages: []
                             },
                             {
-                                fullName: 'When this is failing the sonar report should contain the failure',
+                                fullName:
+                                    'When this is failing the sonar report should contain the failure',
                                 duration: 10,
                                 failureMessages: ['A failure']
                             }
@@ -43,5 +43,4 @@ describe('reporter', () => {
             expect(reporter.toSonarReport(testResults)).toMatchSnapshot();
         });
     });
-
 });

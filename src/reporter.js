@@ -7,15 +7,15 @@ class Reporter {
 
     toSonarReport(results) {
         const testResults = results.testResults.map(testResult => ({
-                path: path.relative(this.rootDir, testResult.testFilePath),
-                testCases: testResult.testResults.map(testCase => {
-                    return {
-                        name: testCase.fullName,
-                        duration: testCase.duration,
-                        failures: testCase.failureMessages
-                    };
-                })
-            }));
+            path: path.relative(this.rootDir, testResult.testFilePath),
+            testCases: testResult.testResults.map(testCase => {
+                return {
+                    name: testCase.fullName,
+                    duration: testCase.duration,
+                    failures: testCase.failureMessages
+                };
+            })
+        }));
 
         return this.render(testResults);
     }
@@ -24,9 +24,10 @@ class Reporter {
         let render = ['<testExecutions version="1">'];
 
         results.forEach(testFile => {
-
-            const buildTestCase = testCase => `<testCase name="${testCase.name}" duration="${testCase.duration}"`;
-            const buildFailure = failure => `<failure message="Error"><![CDATA[${failure}]]></failure>`;
+            const buildTestCase = testCase =>
+                `<testCase name="${testCase.name}" duration="${testCase.duration}"`;
+            const buildFailure = failure =>
+                `<failure message="Error"><![CDATA[${failure}]]></failure>`;
             const buildFile = testFile => `<file path="${testFile.path}">`;
 
             render.push(buildFile(testFile));

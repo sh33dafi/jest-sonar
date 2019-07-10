@@ -8,14 +8,14 @@ const DEFAULT_OPTIONS = {
 };
 
 class JestSonar {
-
     constructor(globalConfig, options) {
         this.config = this.getConfig(globalConfig);
         this.options = this.getOptions(options);
     }
 
     onTestResult(contexts, info, results) {
-        const rootDir = contexts.context.config.cwd || this.config.rootDir || '';
+        const rootDir =
+            contexts.context.config.cwd || this.config.rootDir || '';
         const reporter = new Reporter(rootDir);
         this.report = reporter.toSonarReport(results);
     }
@@ -24,11 +24,13 @@ class JestSonar {
         const fileName = this.getFileName();
         fs.mkdirSync(path.dirname(fileName), { recursive: true });
         fs.writeFileSync(fileName, this.report, 'utf8');
-
     }
 
     getFileName() {
-        return path.resolve(this.options.outputDirectory,this.options.outputName);
+        return path.resolve(
+            this.options.outputDirectory,
+            this.options.outputName
+        );
     }
 
     getConfig(config) {
