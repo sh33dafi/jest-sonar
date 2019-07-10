@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_OPTIONS = {
-    outputDirectory: null,
+    outputDirectory: '',
     outputName: 'sonar-report.xml'
 };
 
@@ -14,7 +14,7 @@ class JestSonar {
         this.options = this.getOptions(options);
     }
 
-    onTestResult(contexts, f, results) {
+    onTestResult(contexts, info, results) {
         const rootDir = contexts.context.config.cwd || this.config.rootDir || '';
         const reporter = new Reporter(rootDir);
         this.report = reporter.toSonarReport(results);
