@@ -68,5 +68,3 @@ NOTE: Be sure to merge the latest change from "upstream" before making a pull re
 ## Licence
 
 This project uses the [MIT](LICENSE) licence.
-
-## FAQ
