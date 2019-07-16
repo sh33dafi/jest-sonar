@@ -9,7 +9,7 @@ node_js:
   - "11"
   - "12"
 install:
-  - yarn
+  - yarn --frozen-lockfile
 script:
   - yarn audit
   - yarn lint
