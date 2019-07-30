@@ -22,7 +22,7 @@ class JestSonar {
 
     onRunComplete() {
         const fileName = this.getFileName();
-        fs.mkdirSync(path.dirname(fileName), { recursive: true });
+        this.createDirectory(path.dirname(fileName));
         fs.writeFileSync(fileName, this.report, 'utf8');
     }
 
@@ -39,6 +39,16 @@ class JestSonar {
 
     getOptions(options) {
         return Object.assign({}, DEFAULT_OPTIONS, options);
+    }
+
+    createDirectory(pathToCreate) {
+        pathToCreate.split(path.sep).reduce((prevPath, folder) => {
+            const currentPath = path.join(prevPath, folder, path.sep);
+            if (!fs.existsSync(currentPath)) {
+                fs.mkdirSync(currentPath);
+            }
+            return currentPath;
+        }, '');
     }
 }
 
