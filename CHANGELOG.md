@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/sh33dafi/jest-sonar/compare/v0.1.1...v0.2.0) (2019-08-01)
+
+
+### Bug Fixes
+
+* **report:** Rewrote how to create a dir recusivly so we are compatible with node < 10 ([e662b9c](https://github.com/sh33dafi/jest-sonar/commit/e662b9c))
+
+
+### Features
+
+* **reporter:** Added output for skipped tests ([60d1b40](https://github.com/sh33dafi/jest-sonar/commit/60d1b40))
+
+
+
 ### [0.1.3](https://github.com/sh33dafi/jest-sonar/compare/v0.1.1...v0.1.3) (2019-07-30)
 
 
