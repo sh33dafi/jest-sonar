@@ -12,7 +12,8 @@ class Reporter {
                 return {
                     name: testCase.fullName,
                     duration: testCase.duration,
-                    failures: testCase.failureMessages
+                    failures: testCase.failureMessages,
+                    status: testCase.status
                 };
             })
         }));
@@ -23,6 +24,18 @@ class Reporter {
     render(results) {
         let render = ['<testExecutions version="1">'];
 
+        function failedTest(testCase) {
+            return testCase.failures && testCase.failures.length > 0;
+        }
+
+        function skippedTest(testCase) {
+            return testCase.status === 'pending';
+        }
+
+        function successFullTest(testCase) {
+            return !failedTest(testCase) && !skippedTest(testCase);
+        }
+
         results.forEach(testFile => {
             const buildTestCase = testCase =>
                 `<testCase name="${testCase.name}" duration="${testCase.duration}"`;
@@ -32,11 +45,19 @@ class Reporter {
 
             render.push(buildFile(testFile));
             testFile.testCases.forEach(testCase => {
-                if (!testCase.failures || testCase.failures.length === 0) {
+                if (successFullTest(testCase)) {
                     render.push(`${buildTestCase(testCase)} />`);
                 } else {
                     render.push(`${buildTestCase(testCase)}>`);
-                    render.push(testCase.failures.map(buildFailure));
+
+                    if (failedTest(testCase)) {
+                        render.push(testCase.failures.map(buildFailure));
+                    }
+
+                    if (skippedTest(testCase)) {
+                        render.push(`<skipped message="${testCase.name}"/>`);
+                    }
+
                     render.push(`</testCase>`);
                 }
             });

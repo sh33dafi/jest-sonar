@@ -36,6 +36,17 @@ describe('reporter', () => {
                                 failureMessages: []
                             }
                         ]
+                    },
+                    {
+                        testFilePath: '/the/root/my-skipped-test.spec.js',
+                        testResults: [
+                            {
+                                fullName: 'Skipped',
+                                duration: 10,
+                                failureMessages: [],
+                                status: 'pending'
+                            }
+                        ]
                     }
                 ]
             };
