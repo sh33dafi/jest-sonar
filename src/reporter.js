@@ -1,4 +1,6 @@
 const path = require('path');
+const xml = require('xml');
+const escape = require('./escape');
 
 class Reporter {
     constructor(rootDir) {
@@ -11,7 +13,7 @@ class Reporter {
             testCases: testResult.testResults.map(testCase => {
                 return {
                     name: testCase.fullName,
-                    duration: testCase.duration,
+                    duration: '' + testCase.duration,
                     failures: testCase.failureMessages,
                     status: testCase.status
                 };
@@ -38,7 +40,7 @@ class Reporter {
 
         results.forEach(testFile => {
             const buildTestCase = testCase =>
-                `<testCase name="${testCase.name}" duration="${testCase.duration}"`;
+                `<testCase name="${escape(testCase.name)}" duration="${escape(testCase.duration)}"`;
             const buildFailure = failure =>
                 `<failure message="Error"><![CDATA[${failure}]]></failure>`;
             const buildFile = testFile => `<file path="${testFile.path}">`;

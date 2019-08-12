@@ -15,7 +15,7 @@ describe('reporter', () => {
                         testFilePath: '/the/root/my-test/my-test.spec.js',
                         testResults: [
                             {
-                                fullName: 'When doing this should be ok',
+                                fullName: 'When doing this should "be" ok',
                                 duration: 30,
                                 failureMessages: []
                             },
