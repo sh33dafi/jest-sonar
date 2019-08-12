@@ -40,7 +40,9 @@ class Reporter {
 
         results.forEach(testFile => {
             const buildTestCase = testCase =>
-                `<testCase name="${escape(testCase.name)}" duration="${escape(testCase.duration)}"`;
+                `<testCase name="${escape(testCase.name)}" duration="${escape(
+                    testCase.duration
+                )}"`;
             const buildFailure = failure =>
                 `<failure message="Error"><![CDATA[${failure}]]></failure>`;
             const buildFile = testFile => `<file path="${testFile.path}">`;
@@ -57,7 +59,9 @@ class Reporter {
                     }
 
                     if (skippedTest(testCase)) {
-                        render.push(`<skipped message="${testCase.name}"/>`);
+                        render.push(
+                            `<skipped message="${escape(testCase.name)}"/>`
+                        );
                     }
 
                     render.push(`</testCase>`);
