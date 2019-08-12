@@ -26,5 +26,7 @@
     "prettier": "^1.18.2",
     "standard-version": "^6.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "xml": "^1.0.1"
+  }
 }
