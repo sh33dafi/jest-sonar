@@ -28,6 +28,26 @@ describe('reporter', () => {
                         ]
                     },
                     {
+                        testFilePath: '/the/root/my-test/my-test.spec.js',
+                        testResults: [
+                            {
+                                fullName: `Some crazy title with ${String.fromCharCode(
+                                    27
+                                )}[31;1m red color ${String.fromCharCode(
+                                    27
+                                )}[0m and 🔥`,
+                                duration: 30,
+                                failureMessages: []
+                            },
+                            {
+                                fullName:
+                                    'When this is failing the sonar report should contain the failure',
+                                duration: 10,
+                                failureMessages: ['A failure']
+                            }
+                        ]
+                    },
+                    {
                         testFilePath: '/the/root/my-second-test.spec.js',
                         testResults: [
                             {

@@ -26,5 +26,8 @@
     "prettier": "^1.18.2",
     "standard-version": "^6.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "entities": "2.0.0",
+    "strip-ansi": "5.2.0"
+  }
 }
