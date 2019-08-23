@@ -1,15 +1,7 @@
-const map = {
-    '>': '&gt;',
-    '<': '&lt;',
-    "'": '&apos;',
-    '"': '&quot;',
-    '&': '&amp;'
-};
+const entities = require('entities');
+const stripAnsi = require('strip-ansi');
 
-module.exports = function(value) {
-    if (value === null || value === undefined) return;
-
-    return value.replace(new RegExp('([&"<>\'])', 'g'), (str, item) => {
-        return map[item];
-    });
+module.exports = value => {
+    if (typeof value !== 'string') return '';
+    return entities.encodeXML(stripAnsi(value));
 };

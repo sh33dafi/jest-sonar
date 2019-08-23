@@ -8,6 +8,12 @@ exports[`reporter When calling toSonarReport should map a test result file to a 
 <failure message=\\"Error\\"><![CDATA[A failure]]></failure>
 </testCase>
 </file>
+<file path=\\"my-test/my-test.spec.js\\">
+<testCase name=\\"Some crazy title with  red color  and &#x1F525;\\" duration=\\"30\\" />
+<testCase name=\\"When this is failing the sonar report should contain the failure\\" duration=\\"10\\">
+<failure message=\\"Error\\"><![CDATA[A failure]]></failure>
+</testCase>
+</file>
 <file path=\\"my-second-test.spec.js\\">
 <testCase name=\\"When doing this should be ok\\" duration=\\"35\\" />
 </file>
