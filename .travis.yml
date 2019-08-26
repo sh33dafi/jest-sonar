@@ -11,6 +11,7 @@ node_js:
 install:
   - yarn --frozen-lockfile
 script:
+  - commitlint-travis
   - yarn audit
   - yarn lint
   - yarn test
