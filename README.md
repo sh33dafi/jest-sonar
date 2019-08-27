@@ -55,6 +55,9 @@ The following options can be set to customize the reporter:
  ```
 
 ## Contribution
+
+[Contribution guidelines for this project](CONTRIBUTING.md)
+
 Contributions to this project are welcome, either by submitting bug reports, submitting feature requests or submitting pull requests.
 
 ### Creating a pull request 
