@@ -18,8 +18,8 @@ exports[`reporter When calling toSonarReport should map a test result file to a 
 <testCase name=\\"When doing this should be ok\\" duration=\\"35\\" />
 </file>
 <file path=\\"my-skipped-test.spec.js\\">
-<testCase name=\\"Skipped\\" duration=\\"10\\">
-<skipped message=\\"Skipped\\"/>
+<testCase name=\\"Skipped &quot;this test is skipped&quot;\\" duration=\\"10\\">
+<skipped message=\\"Skipped &quot;this test is skipped&quot;\\"/>
 </testCase>
 </file>
 </testExecutions>"

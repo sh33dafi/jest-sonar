@@ -61,7 +61,7 @@ describe('reporter', () => {
                         testFilePath: '/the/root/my-skipped-test.spec.js',
                         testResults: [
                             {
-                                fullName: 'Skipped',
+                                fullName: 'Skipped "this test is skipped"',
                                 duration: 10,
                                 failureMessages: [],
                                 status: 'pending'
