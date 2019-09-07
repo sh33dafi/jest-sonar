@@ -58,7 +58,9 @@ class Reporter {
                     }
 
                     if (skippedTest(testCase)) {
-                        render.push(`<skipped message="${testCase.name}"/>`);
+                        render.push(
+                            `<skipped message="${escape(testCase.name)}"/>`
+                        );
                     }
 
                     render.push(`</testCase>`);
