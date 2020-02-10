@@ -13,17 +13,11 @@ class JestSonar {
         this.options = this.getOptions(options);
     }
 
-    onTestResult(contexts, info, results) {
-        const rootDir =
-            contexts.context.config.cwd || this.config.rootDir || '';
-        const reporter = new Reporter(rootDir);
-        this.report = reporter.toSonarReport(results);
-    }
-
-    onRunComplete() {
+    onRunComplete(contexts, results) {
+        const reporter = new Reporter(this.config.rootDir || '');
         const fileName = this.getFileName();
         this.createDirectory(path.dirname(fileName));
-        fs.writeFileSync(fileName, this.report, 'utf8');
+        fs.writeFileSync(fileName, reporter.toSonarReport(results), 'utf8');
     }
 
     getFileName() {
