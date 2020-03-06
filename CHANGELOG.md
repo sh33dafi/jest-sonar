@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/sh33dafi/jest-sonar/compare/v0.2.4...v0.2.5) (2020-03-06)
+
+
+### Bug Fixes
+
+* **reporter:** support empty test suites ([6fc69f1](https://github.com/sh33dafi/jest-sonar/commit/6fc69f1))
+
+
+
 ### [0.2.4](https://github.com/sh33dafi/jest-sonar/compare/v0.2.2...v0.2.4) (2019-09-07)
 
 
