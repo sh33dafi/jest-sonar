@@ -43,7 +43,11 @@ describe('reporter', () => {
                                 fullName:
                                     'When this is failing the sonar report should contain the failure',
                                 duration: 10,
-                                failureMessages: ['A failure']
+                                failureMessages: [
+                                    `A crazy failure ${String.fromCharCode(
+                                        27
+                                    )}[0m and 🔥`
+                                ]
                             }
                         ]
                     },

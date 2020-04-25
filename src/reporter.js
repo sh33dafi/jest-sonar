@@ -43,7 +43,9 @@ class Reporter {
                     testCase.duration
                 )}"`;
             const buildFailure = failure =>
-                `<failure message="Error"><![CDATA[${failure}]]></failure>`;
+                `<failure message="Error"><![CDATA[${escape(
+                    failure
+                )}]]></failure>`;
             const buildFile = testFile => `<file path="${testFile.path}">`;
 
             render.push(buildFile(testFile));
