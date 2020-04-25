@@ -2,15 +2,10 @@ const Reporter = require('./reporter');
 const fs = require('fs');
 const path = require('path');
 
-const DEFAULT_OPTIONS = {
-    outputDirectory: '',
-    outputName: 'sonar-report.xml'
-};
-
 class JestSonar {
     constructor(globalConfig, options) {
         this.config = this.getConfig(globalConfig);
-        this.options = this.getOptions(options);
+        this.options = this.getOptions(options, this.config);
     }
 
     onRunComplete(contexts, results) {
@@ -31,8 +26,15 @@ class JestSonar {
         return Object.assign({}, config);
     }
 
-    getOptions(options) {
-        return Object.assign({}, DEFAULT_OPTIONS, options);
+    getOptions(options, config) {
+        return Object.assign(
+            {},
+            {
+                outputName: 'sonar-report.xml',
+                outputDirectory: config.coverageDirectory || ''
+            },
+            options
+        );
     }
 
     createDirectory(pathToCreate) {
