@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/sh33dafi/jest-sonar/compare/v0.2.6...v0.2.7) (2020-04-25)
+
+
+### Bug Fixes
+
+* **#20:** use coverage directory to generate report ([33adbd2](https://github.com/sh33dafi/jest-sonar/commit/33adbd226675ea45e5be02ee25a4d2fe130988dc)), closes [#20](https://github.com/sh33dafi/jest-sonar/issues/20)
+
 ### [0.2.6](https://github.com/sh33dafi/jest-sonar/compare/v0.2.5...v0.2.6) (2020-04-25)
 
 

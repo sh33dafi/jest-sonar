@@ -1,6 +1,6 @@
 {
   "name": "jest-sonar",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A sonar reporter for jest",
   "keywords": [
     "jest",
@@ -14,7 +14,7 @@
   "author": "Yannick Houbrix <yannick.houbrix@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "release": "standard-version",
+    "release": "standard-version -s",
     "test": "jest --collect-coverage",
     "lint": "eslint ."
   },
