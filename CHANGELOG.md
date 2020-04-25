@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/sh33dafi/jest-sonar/compare/v0.2.5...v0.2.6) (2020-04-25)
+
+
+### Bug Fixes
+
+* **#13:** escaped chars in failure ([642813b](https://github.com/sh33dafi/jest-sonar/commit/642813bb26576c7a4ddeda5824fcc47bfb01ded1)), closes [#13](https://github.com/sh33dafi/jest-sonar/issues/13)
+
 ### [0.2.5](https://github.com/sh33dafi/jest-sonar/compare/v0.2.4...v0.2.5) (2020-03-06)
 
 
