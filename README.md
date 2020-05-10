@@ -27,7 +27,7 @@ module.exports = {
     ...
     reporters: ['default',  'jest-sonar'],
     ...
-};
+}
 
 ```
 
@@ -50,7 +50,7 @@ The following options can be set to customize the reporter:
          outputName: 'my-new-report-name.xml'
      }]],
      ...
- };
+ }
 
  ```
 
@@ -62,7 +62,7 @@ Contributions to this project are welcome, either by submitting bug reports, sub
 
 ### Creating a pull request 
 1. Fork the repo on GitHub
-2. Clone and make changes on your own machine
+2. Clone and make changes on your machine
 3. Commit and Push the changes to your fork
 4. Submit a Pull request so that we can review your changes
 
@@ -70,4 +70,4 @@ NOTE: Be sure to merge the latest change from "upstream" before making a pull re
 
 ## Licence
 
-This project uses the [MIT](LICENSE) licence.
+This project uses the [MIT](LICENSE) license.
