@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://github.com/sh33dafi/jest-sonar/compare/v0.2.7...v0.2.8) (2020-05-10)
+
+### Security
+
+* Updated versions of dependencies that had vulnerabilities.    
+
 ### [0.2.7](https://github.com/sh33dafi/jest-sonar/compare/v0.2.6...v0.2.7) (2020-04-25)
 
 
