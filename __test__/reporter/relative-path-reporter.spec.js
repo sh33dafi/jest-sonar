@@ -1,10 +1,10 @@
-const Reporter = require('../../src/reporter/relative-path-reporter');
+const RelativePathReporter = require('../../src/reporter/relative-path-reporter');
 
 describe('RelativePathReporter', () => {
     let reporter;
 
     beforeEach(() => {
-        reporter = new Reporter('/the/root');
+        reporter = new RelativePathReporter('/the/root');
     });
 
     describe('When calling toSonarReport', () => {

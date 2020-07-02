@@ -30,53 +30,63 @@ class AbstractReporter {
     render(results) {
         let render = ['<testExecutions version="1">'];
 
-        function failedTest(testCase) {
-            return testCase.failures && testCase.failures.length > 0;
-        }
-
-        function skippedTest(testCase) {
-            return testCase.status === 'pending';
-        }
-
-        function successFullTest(testCase) {
-            return !failedTest(testCase) && !skippedTest(testCase);
-        }
-
         results.forEach(testFile => {
-            const buildTestCase = testCase =>
-                `<testCase name="${escape(testCase.name)}" duration="${escape(
-                    testCase.duration
-                )}"`;
-            const buildFailure = failure =>
-                `<failure message="Error"><![CDATA[${escape(
-                    failure
-                )}]]></failure>`;
             const buildFile = testFile => `<file path="${testFile.path}">`;
 
             render.push(buildFile(testFile));
-            testFile.testCases.forEach(testCase => {
-                if (successFullTest(testCase)) {
-                    render.push(`${buildTestCase(testCase)} />`);
-                } else {
-                    render.push(`${buildTestCase(testCase)}>`);
-
-                    if (failedTest(testCase)) {
-                        render.push(testCase.failures.map(buildFailure));
-                    }
-
-                    if (skippedTest(testCase)) {
-                        render.push(
-                            `<skipped message="${escape(testCase.name)}"/>`
-                        );
-                    }
-
-                    render.push(`</testCase>`);
-                }
-            });
+            this.renderTestCases(testFile, render);
             render.push(`</file>`);
         });
         render.push('</testExecutions>');
         return render.join('\n').trim();
+    }
+
+    renderTestCases(testFile, render) {
+        const buildTestCase = testCase =>
+            `<testCase name="${escape(testCase.name)}" duration="${escape(
+                testCase.duration
+            )}"`;
+
+        testFile.testCases.forEach(testCase => {
+            if (this.successFullTest(testCase)) {
+                render.push(`${buildTestCase(testCase)} />`);
+            } else {
+                this.renderSkippedOrFailedTest(render, testCase);
+            }
+        });
+    }
+
+    renderSkippedOrFailedTest(render, testCase) {
+        const buildTestCase = testCase =>
+            `<testCase name="${escape(testCase.name)}" duration="${escape(
+                testCase.duration
+            )}"`;
+        const buildFailure = failure =>
+            `<failure message="Error"><![CDATA[${escape(failure)}]]></failure>`;
+
+        render.push(`${buildTestCase(testCase)}>`);
+
+        if (this.failedTest(testCase)) {
+            render.push(testCase.failures.map(buildFailure));
+        }
+
+        if (this.skippedTest(testCase)) {
+            render.push(`<skipped message="${escape(testCase.name)}"/>`);
+        }
+
+        render.push(`</testCase>`);
+    }
+
+    failedTest(testCase) {
+        return testCase.failures && testCase.failures.length > 0;
+    }
+
+    skippedTest(testCase) {
+        return testCase.status === 'pending';
+    }
+
+    successFullTest(testCase) {
+        return !this.failedTest(testCase) && !this.skippedTest(testCase);
     }
 }
 
