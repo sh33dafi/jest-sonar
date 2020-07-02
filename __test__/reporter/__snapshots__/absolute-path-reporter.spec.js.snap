@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AbsolutePathReporter When calling toSonarReport should map a test result file to a sonar report 1`] = `
+"<testExecutions version=\\"1\\">
+<file path=\\"/the/root/my-test/my-test.spec.js\\">
+<testCase name=\\"When doing this should &quot;be&quot; ok\\" duration=\\"30\\" />
+<testCase name=\\"When this is failing the sonar report should contain the failure\\" duration=\\"10\\">
+<failure message=\\"Error\\"><![CDATA[A failure]]></failure>
+</testCase>
+</file>
+<file path=\\"/the/root/my-test/my-test.spec.js\\">
+<testCase name=\\"Some crazy title with  red color  and &#x1F525;\\" duration=\\"30\\" />
+<testCase name=\\"When this is failing the sonar report should contain the failure\\" duration=\\"10\\">
+<failure message=\\"Error\\"><![CDATA[A crazy failure  and &#x1F525;]]></failure>
+</testCase>
+</file>
+<file path=\\"/the/root/my-second-test.spec.js\\">
+<testCase name=\\"When doing this should be ok\\" duration=\\"35\\" />
+</file>
+<file path=\\"/the/root/my-skipped-test.spec.js\\">
+<testCase name=\\"Skipped &quot;this test is skipped&quot;\\" duration=\\"10\\">
+<skipped message=\\"Skipped &quot;this test is skipped&quot;\\"/>
+</testCase>
+</file>
+</testExecutions>"
+`;

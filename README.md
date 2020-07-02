@@ -35,20 +35,22 @@ module.exports = {
 
 The following options can be set to customize the reporter:
 
- | Option          | Description                                         | Default               |
- |-----------------|-----------------------------------------------------|-----------------------|
- | outputDirectory | The directory to which the report should be written | The projects root dir |
- | outputName      | The name of the report                              | sonar-report.xml      |
+ | Option            | Description                                         | Default               | Accepted values          |
+ |-------------------|-----------------------------------------------------|-----------------------|--------------------------|
+ | outputDirectory   | The directory to which the report should be written | The projects root dir | string                   |
+ | outputName        | The name of the report                              | sonar-report.xml      | string                   | 
+ | reportedFilePath  | Should the path be relative or absolute             | 'relative'            | 'relative' or 'absolute' |
  
  You can set these options when defining the reporter in `jest.config`:
  
  ```javascript
  module.exports = {
      ...
-     reporters: ['default',  ['jest-sonar', {
-         outputDirectory: 'my/custom/directory',
-         outputName: 'my-new-report-name.xml'
-     }]],
+         reporters: ['default',  ['jest-sonar', {
+             outputDirectory: 'my/custom/directory',
+             outputName: 'my-new-report-name.xml',
+             reportedFilePath: 'absolute'
+         }]],
      ...
  }
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reporter When calling toSonarReport should map a test result file to a sonar report 1`] = `
+exports[`RelativePathReporter When calling toSonarReport should map a test result file to a sonar report 1`] = `
 "<testExecutions version=\\"1\\">
 <file path=\\"my-test/my-test.spec.js\\">
 <testCase name=\\"When doing this should &quot;be&quot; ok\\" duration=\\"30\\" />

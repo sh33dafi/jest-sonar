@@ -1,14 +1,13 @@
-const path = require('path');
 const escape = require('./escape');
 
-class Reporter {
+class AbstractReporter {
     constructor(rootDir) {
         this.rootDir = rootDir;
     }
 
     toSonarReport(results) {
         const testResults = results.testResults.map(testResult => ({
-            path: path.relative(this.rootDir, testResult.testFilePath),
+            path: this.mapFilePath(testResult.testFilePath),
             testCases: testResult.testResults.map(testCase => {
                 return {
                     name: testCase.fullName,
@@ -20,6 +19,12 @@ class Reporter {
         }));
 
         return this.render(testResults);
+    }
+
+    mapFilePath(filePath) {
+        throw new TypeError(
+            'Do not call abstract method mapFilePath from child.'
+        );
     }
 
     render(results) {
@@ -75,4 +80,4 @@ class Reporter {
     }
 }
 
-module.exports = Reporter;
+module.exports = AbstractReporter;

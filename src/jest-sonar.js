@@ -1,6 +1,8 @@
-const Reporter = require('./reporter');
 const fs = require('fs');
 const path = require('path');
+
+const REPORTED_FILEPATH_RELATIVE = 'relative';
+const REPORTED_FILEPATH_ABSOLUTE = 'absolute';
 
 class JestSonar {
     constructor(globalConfig, options) {
@@ -9,6 +11,13 @@ class JestSonar {
     }
 
     onRunComplete(contexts, results) {
+        let Reporter;
+        if (this.options.reportedFilePath === REPORTED_FILEPATH_ABSOLUTE) {
+            Reporter = require('./reporter/absolute-path-reporter');
+        } else {
+            Reporter = require('./reporter/relative-path-reporter');
+        }
+
         const reporter = new Reporter(this.config.rootDir || '');
         const fileName = this.getFileName();
         this.createDirectory(path.dirname(fileName));
@@ -27,14 +36,16 @@ class JestSonar {
     }
 
     getOptions(options, config) {
-        return Object.assign(
+        const mergedOptions = Object.assign(
             {},
             {
                 outputName: 'sonar-report.xml',
-                outputDirectory: config.coverageDirectory || ''
+                outputDirectory: config.coverageDirectory || '',
+                reportedFilePath: REPORTED_FILEPATH_RELATIVE
             },
             options
         );
+        return mergedOptions;
     }
 
     createDirectory(pathToCreate) {
