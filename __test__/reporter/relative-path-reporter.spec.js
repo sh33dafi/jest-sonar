@@ -1,6 +1,6 @@
-const Reporter = require('../src/reporter');
+const Reporter = require('../../src/reporter/relative-path-reporter');
 
-describe('reporter', () => {
+describe('RelativePathReporter', () => {
     let reporter;
 
     beforeEach(() => {

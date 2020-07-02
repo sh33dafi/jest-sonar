@@ -1,15 +1,17 @@
 const fs = require('fs');
 const path = require('path');
-const Reporter = require('../src/reporter');
+const RelativePathReporter = require('../src/reporter/relative-path-reporter');
+const AbsolutePathReporter = require('../src/reporter/absolute-path-reporter');
 const JestSonarSpec = require('../src/jest-sonar.js');
 jest.mock('fs');
-jest.mock('../src/reporter');
+jest.mock('../src/reporter/relative-path-reporter');
+jest.mock('../src/reporter/absolute-path-reporter');
 
 const coverageBaseDir = __dirname.replace('__test__', '');
 
 describe('jest-sonar', () => {
     afterEach(() => {
-        Reporter.mockClear();
+        RelativePathReporter.mockClear();
         fs.existsSync.mockClear();
         fs.mkdirSync.mockClear();
         fs.writeFileSync.mockClear();
@@ -24,7 +26,7 @@ describe('jest-sonar', () => {
 
             jestSonar.onRunComplete({}, testResults);
 
-            const mockReporter = Reporter.mock.instances[0];
+            const mockReporter = RelativePathReporter.mock.instances[0];
             mockReporter.toSonarReport.mockReturnValue('report');
             expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
                 testResults
@@ -54,7 +56,7 @@ describe('jest-sonar', () => {
 
             jestSonar.onRunComplete({}, testResults);
 
-            const mockReporter = Reporter.mock.instances[0];
+            const mockReporter = RelativePathReporter.mock.instances[0];
             mockReporter.toSonarReport.mockReturnValue('report');
             expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
                 testResults
@@ -82,7 +84,7 @@ describe('jest-sonar', () => {
 
             jestSonar.onRunComplete({}, testResults);
 
-            const mockReporter = Reporter.mock.instances[0];
+            const mockReporter = RelativePathReporter.mock.instances[0];
             mockReporter.toSonarReport.mockReturnValue('report');
             expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
                 testResults
@@ -96,6 +98,68 @@ describe('jest-sonar', () => {
                 undefined,
                 'utf8'
             );
+        });
+    });
+
+    describe('When reportedFilePath is set', () => {
+        const testResults = {};
+        beforeEach(() => {
+            fs.existsSync.mockReturnValue(false);
+        });
+
+        describe('Given the option is set to absolute', () => {
+            it('should use an the absolute path reporter options to generate a report', () => {
+                const jestSonar = new JestSonarSpec(
+                    {},
+                    {
+                        reportedFilePath: 'absolute'
+                    }
+                );
+
+                jestSonar.onRunComplete({}, testResults);
+
+                const mockReporter = AbsolutePathReporter.mock.instances[0];
+                mockReporter.toSonarReport.mockReturnValue('report');
+                expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
+                    testResults
+                );
+            });
+        });
+
+        describe('Given the option is set to relative', () => {
+            it('should use an the relative path reporter options to generate a report', () => {
+                const jestSonar = new JestSonarSpec(
+                    {},
+                    {
+                        reportedFilePath: 'relative'
+                    }
+                );
+                jestSonar.onRunComplete({}, testResults);
+
+                const mockReporter = RelativePathReporter.mock.instances[0];
+                mockReporter.toSonarReport.mockReturnValue('report');
+                expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
+                    testResults
+                );
+            });
+        });
+
+        describe('Given the option is set to an unkown value', () => {
+            it('should use the relative path reporter', () => {
+                const jestSonar = new JestSonarSpec(
+                    {},
+                    {
+                        reportedFilePath: 'foo'
+                    }
+                );
+                jestSonar.onRunComplete({}, testResults);
+
+                const mockReporter = RelativePathReporter.mock.instances[0];
+                mockReporter.toSonarReport.mockReturnValue('report');
+                expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
+                    testResults
+                );
+            });
         });
     });
 });
