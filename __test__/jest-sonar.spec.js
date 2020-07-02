@@ -20,7 +20,8 @@ describe('jest-sonar', () => {
     describe('When no options are set ', () => {
         it('should use the default options to generate a report', () => {
             const testResults = {};
-            const jestSonar = new JestSonarSpec({}, {});
+
+            const jestSonar = JestSonarBuilder.create().build();
 
             fs.existsSync.mockReturnValue(false);
 
@@ -44,13 +45,13 @@ describe('jest-sonar', () => {
     describe('When the options are changed with a config file ', () => {
         it('should use those options to generate a report', () => {
             const testResults = {};
-            const jestSonar = new JestSonarSpec(
-                {},
-                {
+
+            const jestSonar = JestSonarBuilder.create()
+                .withOptions({
                     outputDirectory: 'coverage',
                     outputName: 'test-report.xml'
-                }
-            );
+                })
+                .build();
 
             fs.existsSync.mockReturnValue(false);
 
@@ -76,9 +77,12 @@ describe('jest-sonar', () => {
     describe('When the coverageDirectory is passed as parameter', () => {
         it('should use those options to generate a report', () => {
             const testResults = {};
-            const jestSonar = new JestSonarSpec({
-                coverageDirectory: `${coverageBaseDir}coverage-as-param`
-            });
+
+            const jestSonar = JestSonarBuilder.create()
+                .withGlobalConfig({
+                    coverageDirectory: `${coverageBaseDir}coverage-as-param`
+                })
+                .build();
 
             fs.existsSync.mockReturnValue(false);
 
@@ -109,12 +113,11 @@ describe('jest-sonar', () => {
 
         describe('Given the option is set to absolute', () => {
             it('should use an the absolute path reporter options to generate a report', () => {
-                const jestSonar = new JestSonarSpec(
-                    {},
-                    {
+                const jestSonar = JestSonarBuilder.create()
+                    .withOptions({
                         reportedFilePath: 'absolute'
-                    }
-                );
+                    })
+                    .build();
 
                 jestSonar.onRunComplete({}, testResults);
 
@@ -128,12 +131,11 @@ describe('jest-sonar', () => {
 
         describe('Given the option is set to relative', () => {
             it('should use an the relative path reporter options to generate a report', () => {
-                const jestSonar = new JestSonarSpec(
-                    {},
-                    {
+                const jestSonar = JestSonarBuilder.create()
+                    .withOptions({
                         reportedFilePath: 'relative'
-                    }
-                );
+                    })
+                    .build();
                 jestSonar.onRunComplete({}, testResults);
 
                 const mockReporter = RelativePathReporter.mock.instances[0];
@@ -146,12 +148,11 @@ describe('jest-sonar', () => {
 
         describe('Given the option is set to an unkown value', () => {
             it('should use the relative path reporter', () => {
-                const jestSonar = new JestSonarSpec(
-                    {},
-                    {
+                const jestSonar = JestSonarBuilder.create()
+                    .withOptions({
                         reportedFilePath: 'foo'
-                    }
-                );
+                    })
+                    .build();
                 jestSonar.onRunComplete({}, testResults);
 
                 const mockReporter = RelativePathReporter.mock.instances[0];
@@ -163,3 +164,28 @@ describe('jest-sonar', () => {
         });
     });
 });
+
+class JestSonarBuilder {
+    constructor() {
+        this.options = {};
+        this.globalConfig = {};
+    }
+
+    static create() {
+        return new JestSonarBuilder();
+    }
+
+    withOptions(options) {
+        this.options = options;
+        return this;
+    }
+
+    withGlobalConfig(globalConfig) {
+        this.globalConfig = globalConfig;
+        return this;
+    }
+
+    build() {
+        return new JestSonarSpec(this.globalConfig, this.options);
+    }
+}

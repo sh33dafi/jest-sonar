@@ -1,10 +1,10 @@
-const Reporter = require('../../src/reporter/absolute-path-reporter');
+const AbsolutePathReporter = require('../../src/reporter/absolute-path-reporter');
 
 describe('AbsolutePathReporter', () => {
     let reporter;
 
     beforeEach(() => {
-        reporter = new Reporter('/the/root');
+        reporter = new AbsolutePathReporter('/the/root');
     });
 
     describe('When calling toSonarReport', () => {
