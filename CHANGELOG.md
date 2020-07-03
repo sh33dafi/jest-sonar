@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/sh33dafi/jest-sonar/compare/v0.2.7...v0.2.9) (2020-07-03)
+
+
+### Features
+
+* **#23:** added reportedFilePath to config ([983b5e2](https://github.com/sh33dafi/jest-sonar/commit/983b5e24ca26edd3ccce1a78c378a2d75c24d8d3)), closes [#23](https://github.com/sh33dafi/jest-sonar/issues/23)
+
 ### [0.2.8](https://github.com/sh33dafi/jest-sonar/compare/v0.2.7...v0.2.8) (2020-05-10)
 
 ### Security
