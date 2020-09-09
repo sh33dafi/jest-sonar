@@ -40,6 +40,7 @@ The following options can be set to customize the reporter:
  | outputDirectory   | The directory to which the report should be written | The projects root dir | string                   |
  | outputName        | The name of the report                              | sonar-report.xml      | string                   | 
  | reportedFilePath  | Should the path be relative or absolute             | 'relative'            | 'relative' or 'absolute' |
+ | relativeRootDir   | The root directory for the relative path            | jest `rootDir`        | string                   | 
  
  You can set these options when defining the reporter in `jest.config`:
  

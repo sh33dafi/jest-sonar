@@ -18,7 +18,7 @@ class JestSonar {
             Reporter = require('./reporter/relative-path-reporter');
         }
 
-        const reporter = new Reporter(this.config.rootDir || '');
+        const reporter = new Reporter(this.options.relativeRootDir);
         const fileName = this.getFileName();
         this.createDirectory(path.dirname(fileName));
         fs.writeFileSync(fileName, reporter.toSonarReport(results), 'utf8');
@@ -36,16 +36,16 @@ class JestSonar {
     }
 
     getOptions(options, config) {
-        const mergedOptions = Object.assign(
+        return Object.assign(
             {},
             {
                 outputName: 'sonar-report.xml',
                 outputDirectory: config.coverageDirectory || '',
-                reportedFilePath: REPORTED_FILEPATH_RELATIVE
+                reportedFilePath: REPORTED_FILEPATH_RELATIVE,
+                relativeRootDir: config.rootDir || ''
             },
             options
         );
-        return mergedOptions;
     }
 
     createDirectory(pathToCreate) {
