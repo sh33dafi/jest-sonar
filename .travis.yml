@@ -6,9 +6,9 @@ before_script:
   - ./cc-test-reporter before-build
 node_js:
   - "10"
-  - "11"
   - "12"
   - "13"
+  - "14"
 install:
   - yarn --frozen-lockfile
 script:
