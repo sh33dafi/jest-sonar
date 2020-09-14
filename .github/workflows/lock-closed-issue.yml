@@ -1,0 +1,19 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "30 1 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: dessant/lock-threads@v2.0.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-lock-inactive-days: 90
+        issue-exclude-labels: investigate
+        issue-lock-labels: locked
+        issue-lock-comment: Locked due to an inactive of 90 days
