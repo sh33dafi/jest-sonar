@@ -14,6 +14,6 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         issue-lock-inactive-days: 90
-        issue-exclude-labels: investigate
+        issue-exclude-labels: investigate, in-progress
         issue-lock-labels: locked
         issue-lock-comment: Locked due to an inactive of 90 days
