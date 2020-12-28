@@ -1,4 +1,4 @@
-cache: yarn
+cache: npm
 language: node_js
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -9,11 +9,12 @@ node_js:
   - "12"
   - "13"
   - "14"
+  - "15"
 install:
-  - yarn --frozen-lockfile
+  - npm ci
 script:
   - commitlint-travis
-  - yarn lint
-  - yarn test
+  - npm run lint
+  - npm run test
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
