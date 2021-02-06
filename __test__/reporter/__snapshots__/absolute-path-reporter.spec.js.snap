@@ -18,7 +18,7 @@ exports[`AbsolutePathReporter When calling toSonarReport should map a test resul
 <testCase name=\\"When doing this should be ok\\" duration=\\"35\\" />
 </file>
 <file path=\\"/the/root/my-skipped-test.spec.js\\">
-<testCase name=\\"Skipped &quot;this test is skipped&quot;\\" duration=\\"10\\">
+<testCase name=\\"Skipped &quot;this test is skipped&quot;\\" duration=\\"0\\">
 <skipped message=\\"Skipped &quot;this test is skipped&quot;\\"/>
 </testCase>
 </file>

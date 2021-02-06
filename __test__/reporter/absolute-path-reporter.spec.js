@@ -66,7 +66,7 @@ describe('AbsolutePathReporter', () => {
                         testResults: [
                             {
                                 fullName: 'Skipped "this test is skipped"',
-                                duration: 10,
+                                duration: null,
                                 failureMessages: [],
                                 status: 'pending'
                             }
