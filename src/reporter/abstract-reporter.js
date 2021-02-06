@@ -11,7 +11,7 @@ class AbstractReporter {
             testCases: testResult.testResults.map(testCase => {
                 return {
                     name: testCase.fullName,
-                    duration: '' + testCase.duration,
+                    duration: `${testCase.duration || 0}`,
                     failures: testCase.failureMessages,
                     status: testCase.status
                 };
