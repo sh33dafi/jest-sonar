@@ -66,6 +66,17 @@ describe('AbsolutePathReporter', () => {
                         testResults: [
                             {
                                 fullName: 'Skipped "this test is skipped"',
+                                duration: 10,
+                                failureMessages: [],
+                                status: 'pending'
+                            }
+                        ]
+                    },
+                    {
+                        testFilePath: '/the/root/my-skipped-test.spec.js',
+                        testResults: [
+                            {
+                                fullName: 'Skipped "this test is skipped"',
                                 duration: null,
                                 failureMessages: [],
                                 status: 'pending'
