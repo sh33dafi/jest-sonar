@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RelativePathReporter When calling toSonarReport should map a test result file to a sonar report 1`] = `
-"<testExecutions version=\\"1\\">
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<testExecutions version=\\"1\\">
 <file path=\\"my-test/my-test.spec.js\\">
 <testCase name=\\"When doing this should &quot;be&quot; ok\\" duration=\\"30\\" />
 <testCase name=\\"When this is failing the sonar report should contain the failure\\" duration=\\"10\\">
@@ -9,9 +10,9 @@ exports[`RelativePathReporter When calling toSonarReport should map a test resul
 </testCase>
 </file>
 <file path=\\"my-test/my-test.spec.js\\">
-<testCase name=\\"Some crazy title with  red color  and &#x1F525;\\" duration=\\"30\\" />
+<testCase name=\\"Some crazy title with  red color  and &#x1f525;\\" duration=\\"30\\" />
 <testCase name=\\"When this is failing the sonar report should contain the failure\\" duration=\\"10\\">
-<failure message=\\"Error\\"><![CDATA[A crazy failure  and &#x1F525;]]></failure>
+<failure message=\\"Error\\"><![CDATA[A crazy failure  and &#x1f525;]]></failure>
 </testCase>
 </file>
 <file path=\\"my-second-test.spec.js\\">
