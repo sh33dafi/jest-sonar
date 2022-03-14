@@ -28,7 +28,10 @@ class AbstractReporter {
     }
 
     render(results) {
-        let render = ['<testExecutions version="1">'];
+        let render = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<testExecutions version="1">'
+        ];
 
         results.forEach(testFile => {
             const buildFile = testFile => `<file path="${testFile.path}">`;
