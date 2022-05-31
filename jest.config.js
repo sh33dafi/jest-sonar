@@ -1,3 +1,3 @@
 module.exports = {
-    coverageReporters: ['lcov']
+    coverageReporters: ['lcov', 'clover']
 };
