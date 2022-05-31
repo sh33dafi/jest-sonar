@@ -17,10 +17,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npx commitlint --from=HEAD~1    
-    - run: npm ci
+      - run: npm ci
+    - run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
     - run: npm run lint
     - run: npm run test
