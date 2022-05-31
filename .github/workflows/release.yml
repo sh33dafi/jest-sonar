@@ -1,0 +1,28 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Define env name'
+        required: true
+        default: 'prod'
+      branch:
+        description: 'Define branch name'
+        required: true
+        default: 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org'
+          node-version: 18.x
+      - run: npx semantic-release --ci --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
