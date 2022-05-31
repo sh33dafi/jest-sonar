@@ -27,6 +27,7 @@
     "husky": "8.0.1",
     "jest": "28.1.0",
     "prettier": "2.6.2",
+    "semantic-release": "19.0.2",
     "standard-version": "9.5.0"
   },
   "dependencies": {
