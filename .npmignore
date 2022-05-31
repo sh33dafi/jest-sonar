@@ -8,7 +8,6 @@ __test__
 _mocks_
 test/
 
-.travis.yml
 sonar-project.properties
 version.sh
 wallaby.js
