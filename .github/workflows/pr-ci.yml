@@ -26,3 +26,11 @@ jobs:
     - run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
     - run: npm run lint
     - run: npm run test
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageLocations: |
+          ${{github.workspace}}/coverage/*.info:lcov  
+          ${{github.workspace}}/coverage/clover.xml:clover  
