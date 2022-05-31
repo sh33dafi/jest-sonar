@@ -22,7 +22,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      - run: npm ci
+    - run: npm ci
     - run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
     - run: npm run lint
     - run: npm run test
