@@ -1,0 +1,29 @@
+# save as ./github/workflows/git-ci-build.yml
+# make sure that 'test-coverage' generates the coverage reports (lcov)
+
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 17.x, 16.x, 15.x]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run lint
+    - run: npm run test
