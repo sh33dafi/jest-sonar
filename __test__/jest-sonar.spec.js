@@ -74,6 +74,41 @@ describe('jest-sonar', () => {
         });
     });
 
+    describe('When the output directory contains <rootDir>', () => {
+        it('should be resolved relative to the jest root directory', () => {
+            const testResults = {};
+
+            const jestSonar = JestSonarBuilder.create()
+                .withOptions({
+                    outputDirectory: '<rootDir>/coverage',
+                    outputName: 'test-report.xml'
+                })
+                .withGlobalConfig({
+                    rootDir: coverageBaseDir + 'test-dir'
+                })
+                .build();
+
+            fs.existsSync.mockReturnValue(false);
+
+            jestSonar.onRunComplete({}, testResults);
+
+            const mockReporter = RelativePathReporter.mock.instances[0];
+            mockReporter.toSonarReport.mockReturnValue('report');
+            expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
+                testResults
+            );
+
+            expect(fs.mkdirSync).toHaveBeenLastCalledWith(
+                `${coverageBaseDir}test-dir/coverage/`
+            );
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                `${coverageBaseDir}test-dir/coverage/test-report.xml`,
+                undefined,
+                'utf8'
+            );
+        });
+    });
+
     describe('When the coverageDirectory is passed as parameter', () => {
         it('should use those options to generate a report', () => {
             const testResults = {};

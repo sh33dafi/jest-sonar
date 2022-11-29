@@ -26,7 +26,10 @@ class JestSonar {
 
     getFileName() {
         return path.resolve(
-            this.options.outputDirectory,
+            this.replaceRootDirInPath(
+                this.config.rootDir,
+                this.options.outputDirectory
+            ),
             this.options.outputName
         );
     }
@@ -56,6 +59,17 @@ class JestSonar {
             }
             return currentPath;
         }, '');
+    }
+
+    replaceRootDirInPath(rootDir, filePath) {
+        if (!filePath || !/^<rootDir>/.test(filePath)) {
+            return filePath;
+        }
+
+        return path.resolve(
+            rootDir,
+            path.normalize('./' + filePath.substring('<rootDir>'.length))
+        );
     }
 }
 
