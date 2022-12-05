@@ -11,7 +11,7 @@ It converts the generated report into Sonar's [Generic Execution format](https:/
 
 Using yarn:
 ```bash
-$ yarn install -D jest-sonar
+$ yarn add -D jest-sonar
 ```
 
 Using npm:
