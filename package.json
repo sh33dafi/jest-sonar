@@ -1,6 +1,6 @@
 {
   "name": "jest-sonar",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "A sonar reporter for jest",
   "keywords": [
     "jest",
