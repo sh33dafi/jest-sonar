@@ -10,11 +10,13 @@ It converts the generated report into Sonar's [Generic Execution format](https:/
 ## Installation
 
 Using yarn:
+
 ```bash
 $ yarn add -D jest-sonar
 ```
 
 Using npm:
+
 ```bash
 $ npm i -D jest-sonar
 ```
@@ -22,6 +24,7 @@ $ npm i -D jest-sonar
 ## Configuration
 
 Configure Jest in your `jest.config` file and add `jest-sonar` to the list of reporters.
+
 ```javascript
 module.exports = {
     ...
@@ -35,27 +38,33 @@ module.exports = {
 
 The following options can be set to customize the reporter:
 
- | Option            | Description                                         | Default               | Accepted values          |
- |-------------------|-----------------------------------------------------|-----------------------|--------------------------|
- | outputDirectory   | The directory to which the report should be written | The projects root dir | string                   |
- | outputName        | The name of the report                              | sonar-report.xml      | string                   | 
- | reportedFilePath  | Should the path be relative or absolute             | 'relative'            | 'relative' or 'absolute' |
- | relativeRootDir   | The root directory for the relative path            | jest `rootDir`        | string                   | 
- 
- You can set these options when defining the reporter in `jest.config`:
- 
- ```javascript
- module.exports = {
-     ...
-         reporters: ['default',  ['jest-sonar', {
-             outputDirectory: 'my/custom/directory',
-             outputName: 'my-new-report-name.xml',
-             reportedFilePath: 'absolute'
-         }]],
-     ...
- }
+| Option           | Environment override          | Description                                         | Default               | Accepted values          |
+| ---------------- | ----------------------------- | --------------------------------------------------- | --------------------- | ------------------------ |
+| outputDirectory  | JEST_SONAR_OUTPUT_DIR         | The directory to which the report should be written | The projects root dir | string                   |
+| outputName       | JEST_SONAR_OUTPUT_NAME        | The name of the report                              | sonar-report.xml      | string                   |
+| reportedFilePath | JEST_SONAR_REPORTED_FILE_PATH | Should the path be relative or absolute             | 'relative'            | 'relative' or 'absolute' |
+| relativeRootDir  | JEST_SONAR_RELATIVE_ROOT_DIR  | The root directory for the relative path            | jest `rootDir`        | string                   |
 
- ```
+You can set these options when defining the reporter in `jest.config`:
+
+```javascript
+module.exports = {
+    ...
+        reporters: ['default',  ['jest-sonar', {
+            outputDirectory: 'my/custom/directory',
+            outputName: 'my-new-report-name.xml',
+            reportedFilePath: 'absolute'
+        }]],
+    ...
+}
+
+```
+
+Or you can override these options via environment variables. Environment variables will always take precedence over options set via `jest.config`
+
+```bash
+$ JEST_SONAR_OUTPUT_DIR=./specialDir/ npm run jest
+```
 
 ## Contribution
 
@@ -63,7 +72,8 @@ The following options can be set to customize the reporter:
 
 Contributions to this project are welcome, either by submitting bug reports, submitting feature requests or submitting pull requests.
 
-### Creating a pull request 
+### Creating a pull request
+
 1. Fork the repo on GitHub
 2. Clone and make changes on your machine
 3. Commit and Push the changes to your fork
