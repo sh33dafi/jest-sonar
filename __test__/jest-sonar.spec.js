@@ -198,6 +198,37 @@ describe('jest-sonar', () => {
             });
         });
     });
+
+    describe('When the options are overriden with a env options', () => {
+        it('should use those options to generate a report', () => {
+            const testResults = {};
+
+            process.env["JEST_SONAR_OUTPUT_DIR"] = 'coverage';
+            process.env["JEST_SONAR_OUTPUT_NAME"] = 'test-report-env.xml';
+
+            const jestSonar = JestSonarBuilder.create()
+                .build();
+
+            fs.existsSync.mockReturnValue(false);
+
+            jestSonar.onRunComplete({}, testResults);
+
+            const mockReporter = RelativePathReporter.mock.instances[0];
+            mockReporter.toSonarReport.mockReturnValue('report');
+            expect(mockReporter.toSonarReport).toHaveBeenCalledWith(
+                testResults
+            );
+
+            expect(fs.mkdirSync).toHaveBeenLastCalledWith(
+                `${coverageBaseDir}coverage/`
+            );
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                `${coverageBaseDir}coverage/test-report-env.xml`,
+                undefined,
+                'utf8'
+            );
+        });
+    });
 });
 
 class JestSonarBuilder {

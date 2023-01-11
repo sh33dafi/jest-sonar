@@ -3,6 +3,12 @@ const path = require('path');
 
 const REPORTED_FILEPATH_RELATIVE = 'relative';
 const REPORTED_FILEPATH_ABSOLUTE = 'absolute';
+const ENV_OPTIONS_MAP = {
+    JEST_SONAR_OUTPUT_NAME: "outputName",
+    JEST_SONAR_OUTPUT_DIR: "outputDirectory",
+    JEST_SONAR_REPORTED_FILE_PATH: "reportedFilePath",
+    JEST_SONAR_RELATIVE_ROOT_DIR: "relativeRootDir",
+};
 
 class JestSonar {
     constructor(globalConfig, options) {
@@ -47,8 +53,19 @@ class JestSonar {
                 reportedFilePath: REPORTED_FILEPATH_RELATIVE,
                 relativeRootDir: config.rootDir || ''
             },
-            options
+            options,
+            this.getEnvOptions()
         );
+    }
+
+    getEnvOptions() {
+        const options = {};
+        for (let name in ENV_OPTIONS_MAP) {
+            if (process.env[name]) {
+                options[ENV_OPTIONS_MAP[name]] = process.env[name];
+            }
+        }
+        return options;
     }
 
     createDirectory(pathToCreate) {
