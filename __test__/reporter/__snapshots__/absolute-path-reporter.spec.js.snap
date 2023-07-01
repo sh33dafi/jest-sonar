@@ -29,3 +29,11 @@ exports[`AbsolutePathReporter When calling toSonarReport should map a test resul
 </file>
 </testExecutions>"
 `;
+
+exports[`AbsolutePathReporter When calling toSonarReport should map to the source file if a sourcemap was found 1`] = `
+"<testExecutions version=\\"1\\">
+<file path=\\"/the/root/src/my-test/my-test.spec.ts\\">
+<testCase name=\\"When doing this should &quot;be&quot; ok\\" duration=\\"30\\" />
+</file>
+</testExecutions>"
+`;

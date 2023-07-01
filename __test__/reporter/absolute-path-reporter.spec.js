@@ -1,10 +1,21 @@
+const fs = require('fs');
 const AbsolutePathReporter = require('../../src/reporter/absolute-path-reporter');
+const { existsSync, readFileSync } = fs;
 
 describe('AbsolutePathReporter', () => {
     let reporter;
+    let existsSyncSpy;
+    let readFileSyncSpy;
 
     beforeEach(() => {
         reporter = new AbsolutePathReporter('/the/root');
+        existsSyncSpy = jest.spyOn(fs, 'existsSync');
+        readFileSyncSpy = jest.spyOn(fs, 'readFileSync');
+    });
+
+    afterEach(() => {
+        existsSyncSpy.mockRestore();
+        readFileSyncSpy.mockRestore();
     });
 
     describe('When calling toSonarReport', () => {
@@ -80,6 +91,37 @@ describe('AbsolutePathReporter', () => {
                                 duration: null,
                                 failureMessages: [],
                                 status: 'pending'
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            expect(reporter.toSonarReport(testResults)).toMatchSnapshot();
+        });
+
+        test('should map to the source file if a sourcemap was found', () => {
+            existsSyncSpy.mockImplementation(
+                filename =>
+                    filename === '/the/root/lib/my-test/my-test.spec.js.map' ||
+                    existsSync(filename)
+            );
+            readFileSyncSpy.mockImplementation(filename =>
+                filename === '/the/root/lib/my-test/my-test.spec.js.map'
+                    ? JSON.stringify({
+                          sources: ['../../src/my-test/my-test.spec.ts']
+                      })
+                    : readFileSync(filename)
+            );
+            const testResults = {
+                testResults: [
+                    {
+                        testFilePath: `/the/root/lib/my-test/my-test.spec.js`,
+                        testResults: [
+                            {
+                                fullName: 'When doing this should "be" ok',
+                                duration: 30,
+                                failureMessages: []
                             }
                         ]
                     }
