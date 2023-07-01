@@ -1,4 +1,6 @@
 const escape = require('./escape');
+const fs = require('fs');
+const path = require('path');
 
 class AbstractReporter {
     constructor(rootDir) {
@@ -7,7 +9,7 @@ class AbstractReporter {
 
     toSonarReport(results) {
         const testResults = results.testResults.map(testResult => ({
-            path: this.mapFilePath(testResult.testFilePath),
+            path: this.mapFilePath(this.mapToSource(testResult.testFilePath)),
             testCases: testResult.testResults.map(testCase => {
                 return {
                     name: testCase.fullName,
@@ -19,6 +21,16 @@ class AbstractReporter {
         }));
 
         return this.render(testResults);
+    }
+
+    mapToSource(filePath) {
+        const sourceMapPath = `${filePath}.map`;
+        if (!fs.existsSync(sourceMapPath)) {
+            return filePath;
+        }
+        const sourceMap = JSON.parse(fs.readFileSync(sourceMapPath, 'utf-8'));
+        const sources = sourceMap.sources.map(source => path.resolve(path.dirname(filePath), source));
+        return sources[0];
     }
 
     mapFilePath(filePath) {
